@@ -63,100 +63,83 @@
                 console.log('yes');
             }*/
 
+
             var result = 0;
-            var maxResult = 25;
+            var maxResult = 39;
 
-            if ($('#standard h1').css('font-size') == $('#user h1').css('font-size')) {
-                result += 1;
-            }
-            if ($('#standard h1').css('color') == $('#user h1').css('color')) {
-                result += 1;
-            }
+            var divStandard = document.getElementById('standard');
+            var divUser = document.getElementById('user');
 
-            if ($('#standard').css('width') == $('#user').css('width')) {
+            if (getComputedStyle(divStandard).width == getComputedStyle(divUser).width) {
                 result += 1;
             }
-            if ($('#standard').css('margin') == $('#user').css('margin')) {
+            if (getComputedStyle(divStandard).margin == getComputedStyle(divUser).margin) {
                 result += 1;
             }
-            if ($('#standard').css('padding') == $('#user').css('padding')) {
+            if (getComputedStyle(divStandard).padding == getComputedStyle(divUser).padding) {
                 result += 1;
             }
-            if ($('#standard').css('font-family') == $('#user').css('font-family')) {
+            if (getComputedStyle(divStandard).fontFamily == getComputedStyle(divUser).fontFamily) {
                 result += 1;
             }
-            if ($('#standard').css('font-size') == $('#user').css('font-size')) {
+            if (getComputedStyle(divStandard).fontSize == getComputedStyle(divUser).fontSize) {
                 result += 1;
             }
-            if ($('#standard').css('line-height') == $('#user').css('line-height')) {
-                result += 1;
-            }
-            
-            if ($('#standard p').css('width') == $('#user p').css('width')) {
-                result += 1;
-            }
-            if ($('#standard p').css('padding') == $('#user p').css('padding')) {
-                result += 1;
-            }
-            if ($('#standard p').css('color') == $('#user p').css('color')) {
-                result += 1;
-            }
-            if ($('#standard p').css('border') == $('#user p').css('border')) {
-                result += 1;
-            }
-            if ($('#standard p').css('margin-righ') == $('#user p').css('margin-righ')) {
-                result += 1;
-            }
-            if ($('#standard p').css('vertical-align') == $('#user p').css('vertical-align')) {
-                result += 1;
-            }
-            if ($('#standard p').css('border-radius') == $('#user p').css('border-radius')) {
-                result += 1;
-            }
-            if ($('#standard p').css('background-color') == $('#user p').css('background-color')) {
-                result += 1;
-            }
-            if ($('#standard p').css('color') == $('#user p').css('color')) {
+            if (getComputedStyle(divStandard).lineHeight == getComputedStyle(divUser).lineHeight) {
                 result += 1;
             }
 
-            var arrayDivStandard = Array.from(document.getElementById('standard').getElementsByTagName('div')[0].children);
-            var arrayDivUser = Array.from(document.getElementById('user').getElementsByTagName('div')[0].children);
+            var arrayStandard = Array.from(document.getElementById('standard').children);
+            var arrayUser = Array.from(document.getElementById('user').children);
 
-            for (let i = 0; i < arrayDivStandard.length; i++) {
-                if (i == 1) {
-                    if (arrayDivStandard[i].getAttribute('width') == arrayDivUser[i].style.width.replace('px', '')) {
-                        result += 1;
-                    }
-                    if (arrayDivStandard[i].getAttribute('height') == arrayDivUser[i].style.height.replace('px', '')) {
-                        result += 1;
-                    }
-                } else {
-                    if (arrayDivStandard[i].getAttribute('width') == arrayDivUser[i].getAttribute('width')) {
-                        result += 1;
-                    }
-                    if (arrayDivStandard[i].getAttribute('height') == arrayDivUser[i].getAttribute('height')) {
-                        result += 1;
-                    }
+            for (let i = 0; i < arrayStandard.length; i++) {
+                if (getComputedStyle(arrayStandard[i]).width == getComputedStyle(arrayUser[i]).width) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).height == getComputedStyle(arrayUser[i]).height) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).padding == getComputedStyle(arrayUser[i]).padding) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).color == getComputedStyle(arrayUser[i]).color) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).border == getComputedStyle(arrayUser[i]).border) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).margin == getComputedStyle(arrayUser[i]).margin) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).verticalAlign == getComputedStyle(arrayUser[i]).verticalAlign) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).borderRadius == getComputedStyle(arrayUser[i]).borderRadius) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayStandard[i]).backgroundColor == getComputedStyle(arrayUser[i]).backgroundColor) {
+                    result += 1;
                 }
             }
+            
+            var arrayDivStandard = Array.from(arrayStandard[2].children);
+            var arrayDivUser = Array.from(arrayUser[2].children);
 
-            if ($('#standard .gallery').css('width') == $('#user .gallery').css('width')) {
-                result += 1;
+            for (let i = 0; i < arrayDivStandard.length; i++) {
+                if (getComputedStyle(arrayDivStandard[i]).width == getComputedStyle(arrayDivUser[i]).width) {
+                    result += 1;
+                }
+                if (getComputedStyle(arrayDivStandard[i]).height == getComputedStyle(arrayDivUser[i]).height) {
+                    result += 1;
+                }
             }
-            if ($('#standard .gallery').css('height') == $('#user .gallery').css('height')) {
-                result += 1;
-            }
-
+            
             result = result * 100 / maxResult;
             
             $('#standard').css('display', 'none');
             $('#user').css('display', 'none');
 
             $('h1').append(result.toFixed(3) + '%');
-
-            console.log(result.toFixed(3) + '%');
-
         </script>
     </body>
 </html>
