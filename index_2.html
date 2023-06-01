@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Задание 2</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 style="text-align: center; font-family: 'Arial', sans-serif; margin-top: 50px;">Схожесть дизайна эталона с дизайном пользователя: </h1>
+        </div>
+        <div id="standard">
+        </div>
+        <div id="user">
+        </div>
+        <script>
+            "use strict";
+
+            var listStandard = new XMLHttpRequest();
+            listStandard.open("GET", "https://elgosss.github.io/web-prog-12/standard.html", false);
+            listStandard.send();
+            var htmlStandard = listStandard.responseText.split('<body>')[1].split('</body>')[0];
+
+            $('#standard').html(htmlStandard);
+
+            var listUser = new XMLHttpRequest();
+            listUser.open("GET", "https://elgosss.github.io/web-prog-12/user.html", false);
+            listUser.send();
+            var htmlUser = listUser.responseText.split('<body>')[1].split('</body>')[0];
+
+            $('#user').html(htmlUser);
+
+            var jStandard = jQuery(listStandard.responseText);
+            var arrayStandard = jStandard[5].innerText.split('}\n');
+            for (let i = 0; i < arrayStandard.length - 1; i++) {
+                if (arrayStandard[i].indexOf('body') >= 0) {
+                    $('style').append('#standard' + arrayStandard[i].replace('body', '') + '}');
+                } else {
+                    $('style').append('#standard' + arrayStandard[i] + '}');
+                }
+            }
+
+            var jUser = jQuery(listUser.responseText);
+            var arrayUser = jUser[5].innerText.split('}\n');
+            for (let i = 0; i < arrayUser.length - 1; i++) {
+                if (arrayUser[i].indexOf('body') >= 0) {
+                    $('style').append('#user' + arrayUser[i].replace('body', '') + '}');
+                } else {
+                    $('style').append('#user' + arrayUser[i] + '}');
+                }
+            }
+
+            /*var h1Standard = $('#standard h1');
+            if (h1Standard.is('#user h1')) {
+                console.log('yes');
+            }*/
+
+            /*var h1List = document.getElementsByTagName('h1');
+            console.log(h1List[1].isEqualNode(h1List[0]));
+            if (h1List[0].isEqualNode(h1List[1]) === true) {
+                console.log('yes');
+            }*/
+
+
+            var result = 0,
+                maxResult = 0;
+
+            var divStandard = document.getElementById('standard');
+            var divUser = document.getElementById('user');
+
+            if (getComputedStyle(divStandard).width == getComputedStyle(divUser).width) {
+                result += 1;
+                maxResult += 1;
+            } else maxResult += 1;
+            if (getComputedStyle(divStandard).margin == getComputedStyle(divUser).margin) {
+                result += 1;
+                maxResult += 1;
+            } else maxResult += 1;
+            if (getComputedStyle(divStandard).padding == getComputedStyle(divUser).padding) {
+                result += 1;
+                maxResult += 1;
+            } else maxResult += 1;
+            if (getComputedStyle(divStandard).fontFamily == getComputedStyle(divUser).fontFamily) {
+                result += 1;
+                maxResult += 1;
+            } else maxResult += 1;
+            if (getComputedStyle(divStandard).fontSize == getComputedStyle(divUser).fontSize) {
+                result += 1;
+                maxResult += 1;
+            } else maxResult += 1;
+            if (getComputedStyle(divStandard).lineHeight == getComputedStyle(divUser).lineHeight) {
+                result += 1;
+                maxResult += 1;
+            } else maxResult += 1;
+
+            var arrayStandard = Array.from(document.getElementById('standard').children);
+            var arrayUser = Array.from(document.getElementById('user').children);
+
+            for (let i = 0; i < arrayStandard.length; i++) {
+                if (getComputedStyle(arrayStandard[i]).width == getComputedStyle(arrayUser[i]).width) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).height == getComputedStyle(arrayUser[i]).height) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).padding == getComputedStyle(arrayUser[i]).padding) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).color == getComputedStyle(arrayUser[i]).color) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).border == getComputedStyle(arrayUser[i]).border) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).margin == getComputedStyle(arrayUser[i]).margin) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).verticalAlign == getComputedStyle(arrayUser[i]).verticalAlign) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).borderRadius == getComputedStyle(arrayUser[i]).borderRadius) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayStandard[i]).backgroundColor == getComputedStyle(arrayUser[i]).backgroundColor) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (arrayStandard[i].tagName == arrayUser[i].tagName) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+            }
+
+            /*if (arrayStandard[0].innerText == arrayUser[0].innerText) {
+                result += 1;
+                maxResult += 1;
+            } else maxResult += 1;*/
+
+            var pStandard = Array.from(arrayStandard[1].children);
+            var pUser = Array.from(arrayUser[1].children);
+
+            for (let i = 0; i < pStandard.length; i++) {
+                if (pStandard[i].tagName == pUser[i].tagName) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+            }
+            
+            var arrayDivStandard = Array.from(arrayStandard[2].children);
+            var arrayDivUser = Array.from(arrayUser[2].children);
+
+            for (let i = 0; i < arrayDivStandard.length; i++) {
+                if (getComputedStyle(arrayDivStandard[i]).width == getComputedStyle(arrayDivUser[i]).width) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (getComputedStyle(arrayDivStandard[i]).height == getComputedStyle(arrayDivUser[i]).height) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+                if (arrayDivStandard[i].tagName == arrayDivUser[i].tagName) {
+                    result += 1;
+                    maxResult += 1;
+                } else maxResult += 1;
+            }
+            
+            result = result * 100 / maxResult;
+            
+            $('#standard').css('display', 'none');
+            $('#user').css('display', 'none');
+
+            $('h1').append(result.toFixed(3) + '%');
+        </script>
+    </body>
+</html>
