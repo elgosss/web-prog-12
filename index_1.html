@@ -8,6 +8,9 @@
         </style>
     </head>
     <body>
+        <div>
+            <h1 style="text-align: center; font-family: 'Arial', sans-serif; margin-top: 50px;">Схожесть дизайна эталона с дизайном пользователя: </h1>
+        </div>
         <div id="standard">
         </div>
         <div id="user">
@@ -121,24 +124,37 @@
             var arrayDivUser = Array.from(document.getElementById('user').getElementsByTagName('div')[0].children);
 
             for (let i = 0; i < arrayDivStandard.length; i++) {
-                if (arrayDivStandard[i].getAttribute('width') == arrayDivUser[i].getAttribute('width')) {
-                    result += 1;
+                if (i == 1) {
+                    if (arrayDivStandard[i].getAttribute('width') == arrayDivUser[i].style.width.replace('px', '')) {
+                        result += 1;
+                    }
+                    if (arrayDivStandard[i].getAttribute('height') == arrayDivUser[i].style.height.replace('px', '')) {
+                        result += 1;
+                    }
+                } else {
+                    if (arrayDivStandard[i].getAttribute('width') == arrayDivUser[i].getAttribute('width')) {
+                        result += 1;
+                    }
+                    if (arrayDivStandard[i].getAttribute('height') == arrayDivUser[i].getAttribute('height')) {
+                        result += 1;
+                    }
                 }
-                if (arrayDivStandard[i].getAttribute('height') == arrayDivUser[i].getAttribute('height')) {
-                    result += 1;
-                }
+                
             }
 
             if ($('#standard .gallery').css('width') == $('#user .gallery').css('width')) {
                 result += 1;
-                console.log('width');
             }
             if ($('#standard .gallery').css('height') == $('#user .gallery').css('height')) {
                 result += 1;
-                console.log('height');
             }
 
             result = result * 100 / maxResult;
+            
+            $('#standard').css('display', 'none');
+            $('#user').css('display', 'none');
+
+            $('h1').append(result.toFixed(3) + '%');
 
             console.log(result.toFixed(3) + '%');
 
