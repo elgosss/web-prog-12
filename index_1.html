@@ -64,30 +64,36 @@
             }*/
 
 
-            var result = 0;
-            var maxResult = 39;
+            var result = 0,
+                maxResult = 0;
 
             var divStandard = document.getElementById('standard');
             var divUser = document.getElementById('user');
 
             if (getComputedStyle(divStandard).width == getComputedStyle(divUser).width) {
                 result += 1;
-            }
+                maxResult += 1;
+            } else maxResult += 1;
             if (getComputedStyle(divStandard).margin == getComputedStyle(divUser).margin) {
                 result += 1;
-            }
+                maxResult += 1;
+            } else maxResult += 1;
             if (getComputedStyle(divStandard).padding == getComputedStyle(divUser).padding) {
                 result += 1;
-            }
+                maxResult += 1;
+            } else maxResult += 1;
             if (getComputedStyle(divStandard).fontFamily == getComputedStyle(divUser).fontFamily) {
                 result += 1;
-            }
+                maxResult += 1;
+            } else maxResult += 1;
             if (getComputedStyle(divStandard).fontSize == getComputedStyle(divUser).fontSize) {
                 result += 1;
-            }
+                maxResult += 1;
+            } else maxResult += 1;
             if (getComputedStyle(divStandard).lineHeight == getComputedStyle(divUser).lineHeight) {
                 result += 1;
-            }
+                maxResult += 1;
+            } else maxResult += 1;
 
             var arrayStandard = Array.from(document.getElementById('standard').children);
             var arrayUser = Array.from(document.getElementById('user').children);
@@ -95,31 +101,40 @@
             for (let i = 0; i < arrayStandard.length; i++) {
                 if (getComputedStyle(arrayStandard[i]).width == getComputedStyle(arrayUser[i]).width) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).height == getComputedStyle(arrayUser[i]).height) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).padding == getComputedStyle(arrayUser[i]).padding) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).color == getComputedStyle(arrayUser[i]).color) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).border == getComputedStyle(arrayUser[i]).border) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).margin == getComputedStyle(arrayUser[i]).margin) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).verticalAlign == getComputedStyle(arrayUser[i]).verticalAlign) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).borderRadius == getComputedStyle(arrayUser[i]).borderRadius) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayStandard[i]).backgroundColor == getComputedStyle(arrayUser[i]).backgroundColor) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
             }
             
             var arrayDivStandard = Array.from(arrayStandard[2].children);
@@ -128,10 +143,12 @@
             for (let i = 0; i < arrayDivStandard.length; i++) {
                 if (getComputedStyle(arrayDivStandard[i]).width == getComputedStyle(arrayDivUser[i]).width) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
                 if (getComputedStyle(arrayDivStandard[i]).height == getComputedStyle(arrayDivUser[i]).height) {
                     result += 1;
-                }
+                    maxResult += 1;
+                } else maxResult += 1;
             }
             
             result = result * 100 / maxResult;
